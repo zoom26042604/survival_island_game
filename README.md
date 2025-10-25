@@ -7,11 +7,13 @@ Un jeu de survie en console développé en Python où vous devez gérer les ress
 Votre aventurier s'est échoué sur une île mystérieuse. Votre mission : survivre le plus longtemps possible en gérant vos jauges vitales et en prenant les bonnes décisions. Chaque jour apporte de nouveaux défis et des événements imprévisibles !
 
 ### 🎯 Objectif
+
 Survivre **30 jours** pour remporter la victoire, tout en évitant que vos jauges vitales atteignent des niveaux critiques.
 
 ## 🎮 Mécaniques de Jeu
 
 ### Jauges Vitales
+
 Votre aventurier possède 3 jauges à surveiller :
 
 - **🍖 Faim** (0-100) : 0 = rassasié, 100 = affamé → Game Over
@@ -19,6 +21,7 @@ Votre aventurier possède 3 jauges à surveiller :
 - **⚡ Énergie** (0-100) : 100 = en forme, 0 = épuisé → Game Over
 
 ### Actions Quotidiennes
+
 Chaque jour, vous pouvez choisir une action :
 
 | Action | Effet | Coût en énergie |
@@ -29,6 +32,7 @@ Chaque jour, vous pouvez choisir une action :
 | 🗺️ **Explorer** | Événement aléatoire | Variable |
 
 ### Événements Aléatoires
+
 Des événements peuvent survenir chaque jour :
 
 - **🌧️ Pluie** (20% de chance) : -15 soif
@@ -36,7 +40,9 @@ Des événements peuvent survenir chaque jour :
 - **🍇 Découverte de ressource** (25% de chance) : -10 faim ou -10 soif
 
 ### Évolution Naturelle
+
 Chaque jour, vos jauges évoluent naturellement :
+
 - Faim : +5
 - Soif : +3  
 - Énergie : -10
@@ -44,20 +50,24 @@ Chaque jour, vos jauges évoluent naturellement :
 ## 🏆 Conditions de Fin
 
 ### 💀 Game Over
+
 - Faim ≥ 100
 - Soif ≥ 100  
 - Énergie ≤ 0
 
 ### 🎉 Victoire
+
 - Survivre 30 jours complets
 
 ## 🚀 Installation et Lancement
 
 ### Prérequis
+
 - Python 3.7 ou supérieur
 - Aucune dépendance externe requise
 
 ### Installation
+
 ```bash
 # Cloner le repository
 git clone https://github.com/zoom26042604/survival_island_game.git
@@ -68,13 +78,14 @@ python main.py
 ```
 
 ### Lancement rapide
+
 ```bash
 python main.py
 ```
 
 ## 📁 Structure du Projet
 
-```
+```text
 survival_island_game/
 ├── src/
 │   ├── models/
@@ -108,6 +119,7 @@ survival_island_game/
 ## 🎯 Fonctionnalités
 
 ### ✅ Implémentées
+
 - [ ] Système de jauges vitales
 - [ ] Actions du joueur (pêcher, eau, dormir, explorer)
 - [ ] Événements aléatoires
@@ -117,6 +129,7 @@ survival_island_game/
 - [ ] Conditions de fin (game over/victoire)
 
 ### 🔮 Fonctionnalités futures
+
 - [ ] Système d'inventaire
 - [ ] Craft d'objets
 - [ ] Différents biomes sur l'île
@@ -126,12 +139,14 @@ survival_island_game/
 ## 🎮 Guide de Jeu
 
 ### Démarrage
+
 1. Lancez le jeu avec `python main.py`
 2. Choisissez "Nouvelle partie" ou "Charger partie"
 3. Entrez le nom de votre aventurier
 
 ### Interface
-```
+
+```text
 === Jour 1 ===
 Aventurier: Alex
 
@@ -148,6 +163,7 @@ Que voulez-vous faire ?
 ```
 
 ### Conseils de Survie
+
 - 🎯 **Équilibrez** vos actions selon vos jauges
 - 💤 **Dormez** régulièrement pour récupérer de l'énergie
 - 🎲 **Explorez** pour des événements bonus (mais attention aux risques !)
@@ -169,13 +185,15 @@ python -m pytest tests/test_player.py -v
 
 ## 🤝 Contribution
 
-Ce projet est développé dans le cadre d'un projet étudiant. 
+Ce projet est développé dans le cadre d'un projet étudiant.
 
 ### Développeurs
+
 - **Étudiant 1** : Système de joueur, événements, interface
 - **Étudiant 2** : Boucle de jeu, sauvegarde, actions
 
 ### Workflow Git
+
 - `main` : Version stable de production
 - `dev` : Branche de développement
 - `feature/*` : Branches pour chaque fonctionnalité
@@ -191,6 +209,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 ## 📞 Support
 
 En cas de problème :
+
 1. Vérifiez que Python 3.7+ est installé
 2. Consultez la documentation dans `/docs`
 3. Créez une issue sur le repository GitHub
