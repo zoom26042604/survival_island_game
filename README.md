@@ -135,9 +135,9 @@ survival_island_game/
 === Jour 1 ===
 Aventurier: Alex
 
-Faim:    [████████░░] 30/100
-Soif:    [██████░░░░] 20/100  
-Énergie: [████████░░] 80/100
+Faim:    30/100
+Soif:    20/100  
+Énergie: 80/100
 
 Que voulez-vous faire ?
 1. 🎣 Pêcher
