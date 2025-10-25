@@ -21,3 +21,8 @@ class ActionManager:
         """Execute sleep action."""
         player.update_gauges(energy_change=30, hunger_change=10, thirst_change=5)
         return True
+        
+    def execute_find_water_action(self, player):
+        """Execute find water action."""
+        player.update_gauges(thirst_change=-15, energy_change=-10)
+        return True

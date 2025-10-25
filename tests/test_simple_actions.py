@@ -39,6 +39,17 @@ class TestActionManager(unittest.TestCase):
         self.assertTrue(result)
         self.assertEqual(player.hunger, 30)  # 50 - 20
         self.assertEqual(player.energy, 35)  # 50 - 15
+        
+    def test_find_water_action(self):
+        """Test find water action."""
+        manager = ActionManager()
+        player = MockPlayer()
+        
+        result = manager.execute_find_water_action(player)
+        
+        self.assertTrue(result)
+        self.assertEqual(player.thirst, 35)  # 50 - 15
+        self.assertEqual(player.energy, 40)  # 50 - 10
 
 
 if __name__ == '__main__':
