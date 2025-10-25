@@ -19,8 +19,8 @@ class ActionManager:
         
     def execute_sleep_action(self, player):
         """Execute sleep action."""
-        # Oops! Wrong sign on energy - typical student mistake!
-        player.update_gauges(energy_change=-30, hunger_change=10, thirst_change=5)
+        # Fixed! Sleep should RESTORE energy, not drain it!
+        player.update_gauges(energy_change=30, hunger_change=10, thirst_change=5)
         return True
         
     def execute_find_water_action(self, player):

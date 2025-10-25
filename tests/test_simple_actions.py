@@ -50,6 +50,18 @@ class TestActionManager(unittest.TestCase):
         self.assertTrue(result)
         self.assertEqual(player.thirst, 35)  # 50 - 15
         self.assertEqual(player.energy, 40)  # 50 - 10
+        
+    def test_sleep_action(self):
+        """Test sleep action."""
+        manager = ActionManager()
+        player = MockPlayer()
+        
+        result = manager.execute_sleep_action(player)
+        
+        self.assertTrue(result)
+        self.assertEqual(player.energy, 80)  # 50 + 30 - should restore energy!
+        self.assertEqual(player.hunger, 60)  # 50 + 10
+        self.assertEqual(player.thirst, 55)  # 50 + 5
 
 
 if __name__ == '__main__':
