@@ -180,4 +180,6 @@
 
 ---
 
-*Documentation updated on 25/10/2025*
+## Documentation Updated
+
+Last updated: 25/10/2025
