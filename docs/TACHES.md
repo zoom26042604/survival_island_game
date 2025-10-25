@@ -1,5 +1,7 @@
 # Tâches de Développement - Jeu de Survie
 
+> 📁 **Documentation** : Ce fichier fait partie du dossier `docs/` qui contient toute la documentation du projet. Le README.md principal se trouve à la racine.
+
 ## 📊 État du Projet (Mis à jour le 25/10/2025)
 
 ### Systèmes Terminés ✅
@@ -17,6 +19,8 @@
 - **Event** : 6 tests unitaires (effets et choix)
 - **EventManager** : 5 tests unitaires (triggers et probabilités)
 - **Actions** : 3 tests unitaires (fish, find_water, sleep actions)
+
+**Total : 31 tests unitaires** ✅
 
 ### Prochaines Étapes 🎯
 
@@ -124,12 +128,13 @@
 ### Structure des fichiers ✅ LARGEMENT TERMINÉE
 
 - [x] Créer le dossier src/
-- [x] Créer le dossier src/models/ (Player, Event terminés)
-- [x] Créer le dossier src/controllers/ (Game, EventManager terminés)
+- [x] Créer le dossier src/models/ (Player, Event, Action terminés)
+- [x] Créer le dossier src/controllers/ (Game, EventManager, ActionManager terminés)
 - [ ] Créer le dossier src/views/ (ConsoleUI)
 - [ ] Créer le dossier src/utils/ (SaveManager)
+- [x] Créer le dossier docs/ (documentation organisée)
 - [ ] Créer le dossier data/ pour les sauvegardes
-- [x] Créer le dossier tests/ (tests pour Player, Game, EventManager)
+- [x] Créer le dossier tests/ (tests pour Player, Game, EventManager, Actions)
 - [ ] Fichier main.py à la racine
 - [x] Ajouter les fichiers **init**.py
 - [x] Scripts de démonstration pour chaque système
