@@ -69,3 +69,20 @@ class Player:
         # Game over if hunger or thirst >= 100, or energy <= 0
         if self.hunger >= 100 or self.thirst >= 100 or self.energy <= 0:
             self.is_alive = False
+            
+    def natural_evolution(self):
+        """
+        Natural evolution of gauges each day.
+        According to specs: Hunger +5, Thirst +3, Energy -10
+        """
+        self.update_gauges(hunger_change=5, thirst_change=3, energy_change=-10)
+        self.days_survived += 1
+        
+    def check_game_over(self) -> bool:
+        """
+        Check if the player is dead.
+        
+        Returns:
+            bool: True if player is dead, False if alive
+        """
+        return not self.is_alive
