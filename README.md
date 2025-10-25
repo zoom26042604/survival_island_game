@@ -185,6 +185,17 @@ This is a student project. For development guidelines:
 3. Maintain code documentation
 4. Use feature branches for development
 
+### Git Workflow
+
+- **main**: Stable production branch
+- **dev**: Active development branch  
+- **feature/**: Feature branches for new development
+
+### Current Development Focus
+
+- 🚧 **Console User Interface** (`feature/ui-interface`)
+- 🚧 **Advanced Save System** (`feature/save-system`)
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

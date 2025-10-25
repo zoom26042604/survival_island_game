@@ -167,16 +167,44 @@
 - [x] README.md with detailed game rules
 - [x] README.md with installation and launch instructions
 - [x] Organized documentation in docs/
-- [x] TACHES.md with project status
-- [x] SUJET.md with requirements
-- [ ] Code comments (in progress)
+- [x] TASKS.md with project status
+- [x] REQUIREMENTS.md with project specifications
+- [x] English translation of all documentation
+- [x] Markdown linting and formatting corrections
+- [x] Code formatting improvements
 
-### Demo and Presentation
+### Code Quality and Maintenance ✅ COMPLETED
+
+- [x] Repository cleanup and branch management
+- [x] Remove obsolete feature branches
+- [x] Maintain clean Git workflow
+- [x] Consistent code formatting standards
+
+### Demo and Presentation 🚧 IN PROGRESS
 
 - [ ] Prepare a demonstration scenario
 - [ ] Test all gameplay paths
 - [ ] Verify gauge balancing
 - [ ] Ensure smooth gameplay flow
+
+## Current Branch Structure
+
+### Active Branches
+
+- **main**: Stable production branch
+- **dev**: Active development branch
+- **feature/ui-interface**: Next major feature (console UI)
+- **feature/save-system**: Next major feature (advanced save management)
+
+### Completed and Merged Features
+
+- ✅ Player system (implemented and merged)
+- ✅ Game controller (implemented and merged)
+- ✅ Events system (implemented and merged)
+- ✅ Actions system (implemented and merged)
+- ✅ Game loop (implemented and merged)
+- ✅ Project structure (implemented and merged)
+- ✅ Testing framework (implemented and merged)
 
 ---
 
