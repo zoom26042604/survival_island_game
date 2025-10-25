@@ -2,17 +2,19 @@
 
 ## Développement des Classes
 
-### Classe Player
+### Classe Player ✅ TERMINÉE
 
-- [ ] Créer la classe Player avec attributs (faim, soif, énergie, jours_survécus)
-- [ ] Méthode d'initialisation avec valeurs par défaut
-- [ ] Méthode update_gauges() pour modifier les jauges
-- [ ] Méthode natural_evolution() pour l'évolution quotidienne
-- [ ] Méthode check_game_over() pour vérifier si le joueur est mort
-- [ ] Méthode get_status() pour retourner l'état du joueur
-- [ ] Validation des limites des jauges (0-100)
+- [x] Créer la classe Player avec attributs (faim, soif, énergie, jours_survécus)
+- [x] Méthode d'initialisation avec valeurs par défaut
+- [x] Méthode update_gauges() pour modifier les jauges
+- [x] Méthode natural_evolution() pour l'évolution quotidienne
+- [x] Méthode check_game_over() pour vérifier si le joueur est mort
+- [x] Méthode get_status() pour retourner l'état du joueur
+- [x] Validation des limites des jauges (0-100)
+- [x] Tests unitaires complets (9 tests)
+- [x] Script de démonstration fonctionnel
 
-### Classe Game
+### Classe Game 🚧 EN COURS
 
 - [ ] Créer la classe Game comme contrôleur principal
 - [ ] Méthode start_new_game() pour démarrer une partie
@@ -81,17 +83,17 @@
 
 ## Structure du Projet
 
-### Organisation des fichiers
+### Structure des fichiers ✅ PARTIELLEMENT TERMINÉE
 
-- [ ] Créer le dossier src/
-- [ ] Créer le dossier src/models/ (Player, Event, Action)
+- [x] Créer le dossier src/
+- [x] Créer le dossier src/models/ (Player terminé)
 - [ ] Créer le dossier src/controllers/ (Game, EventManager, ActionManager)
 - [ ] Créer le dossier src/views/ (ConsoleUI)
 - [ ] Créer le dossier src/utils/ (SaveManager)
 - [ ] Créer le dossier data/ pour les sauvegardes
-- [ ] Créer le dossier tests/
+- [x] Créer le dossier tests/
 - [ ] Fichier main.py à la racine
-- [ ] Ajouter les fichiers __init__.py
+- [x] Ajouter les fichiers __init__.py
 
 ## Intégration et Tests
 
