@@ -86,3 +86,60 @@ class Player:
             bool: True if player is dead, False if alive
         """
         return not self.is_alive
+        
+    def get_status(self) -> dict:
+        """
+        Return current player state as dictionary.
+        
+        Returns:
+            dict: Dictionary containing all player information
+        """
+        return {
+            'name': self.name,
+            'hunger': self.hunger,
+            'thirst': self.thirst,
+            'energy': self.energy,
+            'days_survived': self.days_survived,
+            'is_alive': self.is_alive
+        }
+        
+    def get_gauge_status(self) -> str:
+        """
+        Return gauge status as readable text.
+        
+        Returns:
+            str: Description of gauge states
+        """
+        status = []
+        
+        # Hunger status
+        if self.hunger <= 20:
+            status.append("well-fed")
+        elif self.hunger <= 50:
+            status.append("slightly hungry")
+        elif self.hunger <= 80:
+            status.append("very hungry")
+        else:
+            status.append("starving")
+            
+        # Thirst status
+        if self.thirst <= 20:
+            status.append("hydrated")
+        elif self.thirst <= 50:
+            status.append("slightly thirsty")
+        elif self.thirst <= 80:
+            status.append("very thirsty")
+        else:
+            status.append("dehydrated")
+            
+        # Energy status
+        if self.energy >= 80:
+            status.append("energetic")
+        elif self.energy >= 50:
+            status.append("slightly tired")
+        elif self.energy >= 20:
+            status.append("very tired")
+        else:
+            status.append("exhausted")
+            
+        return f"You are {', '.join(status)}"
