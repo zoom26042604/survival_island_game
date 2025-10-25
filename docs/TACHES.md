@@ -125,7 +125,7 @@
 
 ## Structure du Projet
 
-### Structure des fichiers ✅ LARGEMENT TERMINÉE
+### Structure des fichiers ✅ TERMINÉE
 
 - [x] Créer le dossier src/
 - [x] Créer le dossier src/models/ (Player, Event, Action terminés)
@@ -141,16 +141,19 @@
 
 ## Intégration et Tests
 
-### Tests ✅ LARGEMENT TERMINÉS
+### Tests ✅ TERMINÉS
 
 - [x] Tests unitaires pour Player (9 tests)
 - [x] Tests unitaires pour Game (8 tests)
 - [x] Tests unitaires pour Event (6 tests)
 - [x] Tests unitaires pour EventManager (5 tests)
+- [x] Tests unitaires pour Actions (3 tests)
 - [ ] Tests d'intégration du gameplay complet
 - [x] Tests des conditions de fin (game over, victoire)
 - [ ] Tests du système de sauvegarde/chargement
 - [ ] Tests de l'interface utilisateur
+
+**Total : 31 tests unitaires** ✅
 
 ### Conditions de fin ✅ TERMINÉES
 
@@ -162,12 +165,15 @@
 
 ## Documentation et Finalisation
 
-### Documentation
+### Documentation ✅ TERMINÉE
 
-- [ ] README.md avec présentation du projet
-- [ ] README.md avec règles du jeu détaillées
-- [ ] README.md avec instructions d'installation et lancement
-- [ ] Commentaires dans le code
+- [x] README.md avec présentation du projet
+- [x] README.md avec règles du jeu détaillées
+- [x] README.md avec instructions d'installation et lancement
+- [x] Documentation organisée dans docs/
+- [x] TACHES.md avec état du projet
+- [x] SUJET.md avec cahier des charges
+- [ ] Commentaires dans le code (en cours)
 - [ ] Documentation des classes et méthodes
 
 ### Démo et présentation
