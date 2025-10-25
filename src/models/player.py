@@ -38,3 +38,34 @@ class Player:
     def __repr__(self):
         """Debug representation."""
         return f"Player(name='{self.name}', hunger={self.hunger}, thirst={self.thirst}, energy={self.energy})"
+    
+    def update_gauges(self, hunger_change: int = 0, thirst_change: int = 0, energy_change: int = 0):
+        """
+        Update player's vital gauges.
+        
+        Args:
+            hunger_change (int): Change in hunger (+increases, -decreases)
+            thirst_change (int): Change in thirst (+increases, -decreases)
+            energy_change (int): Change in energy (+increases, -decreases)
+        """
+        self.hunger += hunger_change
+        self.thirst += thirst_change
+        self.energy += energy_change
+        
+        # Keep gauges within 0-100 limits
+        self._clamp_gauges()
+        
+        # Check if player is still alive
+        self._update_alive_status()
+        
+    def _clamp_gauges(self):
+        """Keep gauges within 0-100 limits."""
+        self.hunger = max(0, min(100, self.hunger))
+        self.thirst = max(0, min(100, self.thirst))
+        self.energy = max(0, min(100, self.energy))
+        
+    def _update_alive_status(self):
+        """Update player's alive/dead status."""
+        # Game over if hunger or thirst >= 100, or energy <= 0
+        if self.hunger >= 100 or self.thirst >= 100 or self.energy <= 0:
+            self.is_alive = False
