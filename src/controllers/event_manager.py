@@ -17,12 +17,21 @@ class EventManager:
     def __init__(self):
         """Initialize the EventManager with basic setup."""
         self.events = get_all_events()
-        # TODO: Add configuration for event chances
         
     def trigger_daily_event(self, player):
         """Try to trigger a daily event."""
         # Simple random selection for now
-        if random.random() < 0.5:  # 50% chance - will adjust later
+        if random.random() < 0.5:  # 50% chance
             event = random.choice(self.events)
-            return event.apply_effects(player)
+            result = event.apply_effects(player)
+            
+            # Handle choice events differently
+            if result.get("requires_choice"):
+                # For testing, auto-choose first option
+                choices = list(result["choices"].keys())
+                if choices:
+                    choice = choices[0]  # Pick first choice for now
+                    return event.apply_choice(player, choice)
+            
+            return result
         return None
