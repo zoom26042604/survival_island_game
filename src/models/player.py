@@ -24,10 +24,10 @@ class Player:
             name (str): Player's name
         """
         self.name = name
-        # Initial gauge values (according to specifications)
-        self.hunger = 30      # 30% hunger at start
-        self.thirst = 20      # 20% thirst at start  
-        self.energy = 80      # 80% energy at start
+        # Initial gauge values (100 = full health)
+        self.hunger = 100     # 100 = completely satisfied
+        self.thirst = 100     # 100 = completely hydrated
+        self.energy = 100     # 100 = full energy
         self.days_survived = 0
         self.is_alive = True
         
@@ -66,80 +66,82 @@ class Player:
         
     def _update_alive_status(self):
         """Update player's alive/dead status."""
-        # Game over if hunger or thirst >= 100, or energy <= 0
-        if self.hunger >= 100 or self.thirst >= 100 or self.energy <= 0:
+        # Game over if any gauge reaches 0
+        if self.hunger <= 0 or self.thirst <= 0 or self.energy <= 0:
             self.is_alive = False
             
     def natural_evolution(self):
         """
         Natural evolution of gauges each day.
-        According to specs: Hunger +5, Thirst +3, Energy -10
+        Gauges decrease naturally over time.
         """
-        self.update_gauges(hunger_change=5, thirst_change=3, energy_change=-10)
+        self.update_gauges(hunger_change=-5, thirst_change=-8, energy_change=-10)
         self.days_survived += 1
         
-    def check_game_over(self) -> bool:
+    def check_game_over(self) -> str:
         """
-        Check if the player is dead.
+        Check game over conditions.
         
         Returns:
-            bool: True if player is dead, False if alive
+            str: Game over message if applicable, None if game continues
         """
-        return not self.is_alive
+        if not self.is_alive:
+            return "Game Over: You died from lack of vital resources!"
+        elif self.days_survived >= 30:
+            return "Congratulations! You won by surviving 30 days on the island!"
+        return None
         
-    def get_status(self) -> dict:
+    def get_status(self) -> str:
         """
-        Return current player state as dictionary.
-        
-        Returns:
-            dict: Dictionary containing all player information
-        """
-        return {
-            'name': self.name,
-            'hunger': self.hunger,
-            'thirst': self.thirst,
-            'energy': self.energy,
-            'days_survived': self.days_survived,
-            'is_alive': self.is_alive
-        }
-        
-    def get_gauge_status(self) -> str:
-        """
-        Return gauge status as readable text.
+        Return current player state as formatted string.
         
         Returns:
-            str: Description of gauge states
+            str: Formatted status information
         """
-        status = []
+        return f"""
+{self.name} - Day {self.days_survived}
+Hunger: {self.hunger}/100
+Thirst: {self.thirst}/100
+Energy: {self.energy}/100
+Status: {'Alive' if self.is_alive else 'Dead'}
+""".strip()
         
-        # Hunger status
-        if self.hunger <= 20:
-            status.append("well-fed")
-        elif self.hunger <= 50:
-            status.append("slightly hungry")
-        elif self.hunger <= 80:
-            status.append("very hungry")
-        else:
-            status.append("starving")
+    def get_gauge_status(self, gauge_name: str) -> str:
+        """
+        Return specific gauge status as readable text.
+        
+        Args:
+            gauge_name (str): Name of the gauge ('hunger', 'thirst', 'energy')
             
-        # Thirst status
-        if self.thirst <= 20:
-            status.append("hydrated")
-        elif self.thirst <= 50:
-            status.append("slightly thirsty")
-        elif self.thirst <= 80:
-            status.append("very thirsty")
+        Returns:
+            str: Description of the gauge state
+        """
+        if gauge_name == "hunger":
+            if self.hunger >= 80:
+                return "Satisfied"
+            elif self.hunger >= 60:
+                return "Slightly hungry"
+            elif self.hunger >= 30:
+                return "Hungry"
+            else:
+                return "Starving"
+        elif gauge_name == "thirst":
+            if self.thirst >= 80:
+                return "Hydrated"
+            elif self.thirst >= 60:
+                return "Slightly thirsty"
+            elif self.thirst >= 30:
+                return "Thirsty"
+            else:
+                return "Dehydrated"
+        elif gauge_name == "energy":
+            if self.energy >= 80:
+                return "Energetic"
+            elif self.energy >= 60:
+                return "Slightly tired"
+            elif self.energy >= 30:
+                return "Tired"
+            else:
+                return "Exhausted"
         else:
-            status.append("dehydrated")
-            
-        # Energy status
-        if self.energy >= 80:
-            status.append("energetic")
-        elif self.energy >= 50:
-            status.append("slightly tired")
-        elif self.energy >= 20:
-            status.append("very tired")
-        else:
-            status.append("exhausted")
-            
-        return f"You are {', '.join(status)}"
+            return "Unknown gauge"

@@ -1,0 +1,1 @@
+"""Test package for the survival island game."""
