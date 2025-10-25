@@ -1,41 +1,77 @@
 # Tâches de Développement - Jeu de Survie
 
+## 📊 État du Projet (Mis à jour le 25/10/2025)
+
+### Systèmes Terminés ✅
+
+- **Player** : Gestion complète des jauges, évolution naturelle, conditions de fin
+- **Game** : Contrôleur principal, boucle de jeu, sauvegarde/chargement basique
+- **Event** : Système d'événements avec choix, types d'événements variés
+- **EventManager** : Gestionnaire d'événements aléatoires, probabilités configurables
+
+### Couverture de Tests 🧪
+
+- **Player** : 9 tests unitaires (100% coverage)
+- **Game** : 8 tests unitaires (fonctionnalités principales)
+- **Event** : 6 tests unitaires (effets et choix)
+- **EventManager** : 5 tests unitaires (triggers et probabilités)
+
+### Prochaines Étapes 🎯
+
+1. **Actions System** (en cours) - Système d'actions joueur
+2. **ConsoleUI** - Interface utilisateur en console
+3. **SaveManager** - Gestionnaire de sauvegarde avancé
+4. **Intégration finale** - main.py et gameplay complet
+
+---
+
 ## Développement des Classes
 
-### Classe Player
+### Classe Player ✅ TERMINÉE
 
-- [ ] Créer la classe Player avec attributs (faim, soif, énergie, jours_survécus)
-- [ ] Méthode d'initialisation avec valeurs par défaut
-- [ ] Méthode update_gauges() pour modifier les jauges
-- [ ] Méthode natural_evolution() pour l'évolution quotidienne
-- [ ] Méthode check_game_over() pour vérifier si le joueur est mort
-- [ ] Méthode get_status() pour retourner l'état du joueur
-- [ ] Validation des limites des jauges (0-100)
+- [x] Créer la classe Player avec attributs (faim, soif, énergie, jours_survécus)
+- [x] Méthode d'initialisation avec valeurs par défaut
+- [x] Méthode update_gauges() pour modifier les jauges
+- [x] Méthode natural_evolution() pour l'évolution quotidienne
+- [x] Méthode check_game_over() pour vérifier si le joueur est mort
+- [x] Méthode get_status() pour retourner l'état du joueur
+- [x] Validation des limites des jauges (0-100)
+- [x] Tests unitaires complets (9 tests)
+- [x] Script de démonstration fonctionnel
 
-### Classe Game
+### Classe Game ✅ TERMINÉE
 
-- [ ] Créer la classe Game comme contrôleur principal
-- [ ] Méthode start_new_game() pour démarrer une partie
-- [ ] Méthode load_game() pour charger une sauvegarde
-- [ ] Méthode game_loop() - boucle principale du jeu
-- [ ] Méthode process_day() pour traiter une journée
-- [ ] Méthode check_victory() (30 jours = victoire)
-- [ ] Méthode end_game() pour terminer la partie
+- [x] Créer la classe Game comme contrôleur principal
+- [x] Méthode start_new_game() pour démarrer une partie
+- [x] Méthode load_game() pour charger une sauvegarde
+- [x] Méthode game_loop() - boucle principale du jeu
+- [x] Méthode process_day() pour traiter une journée
+- [x] Méthode check_victory() (30 jours = victoire)
+- [x] Méthode end_game() pour terminer la partie
+- [x] Tests unitaires complets (8 tests)
+- [x] Intégration avec la classe Player
 
-### Classe Event
+### Classe Event ✅ TERMINÉE
 
-- [ ] Créer la classe Event pour les événements aléatoires
-- [ ] Événement "Pluie" (20% chance) : -15 soif
-- [ ] Événement "Animal" (15% chance) : choix fuir/chasser
-- [ ] Événement "Ressource" (25% chance) : -10 faim ou -10 soif
-- [ ] Méthode apply_effects() pour appliquer les effets
+- [x] Créer la classe Event pour les événements aléatoires
+- [x] Événement "Pluie" (20% chance) : -15 soif
+- [x] Événement "Animal" (15% chance) : choix fuir/chasser
+- [x] Événement "Ressource" (25% chance) : -10 faim ou -10 soif
+- [x] Méthode apply_effects() pour appliquer les effets
+- [x] Système de choix interactifs avec apply_choice()
+- [x] Énumérations EventType et EventOutcome
+- [x] Tests unitaires complets (6 tests)
 
-### Classe EventManager
+### Classe EventManager ✅ TERMINÉE
 
-- [ ] Créer la classe EventManager
-- [ ] Méthode trigger_daily_event() pour événements quotidiens
-- [ ] Méthode trigger_exploration_event() pour l'action explorer
-- [ ] Gestion des probabilités d'événements
+- [x] Créer la classe EventManager
+- [x] Méthode trigger_daily_event() pour événements quotidiens
+- [x] Méthode trigger_exploration_event() pour l'action explorer
+- [x] Gestion des probabilités d'événements
+- [x] Bibliothèque d'événements prédéfinis (events_library.py)
+- [x] Système de choix automatique pour les tests
+- [x] Tests unitaires complets (5 tests)
+- [x] Intégration complète avec Player et Event
 
 ### Classe Action
 
@@ -81,42 +117,39 @@
 
 ## Structure du Projet
 
-### Organisation des fichiers
+### Structure des fichiers ✅ LARGEMENT TERMINÉE
 
-- [ ] Créer le dossier src/
-- [ ] Créer le dossier src/models/ (Player, Event, Action)
-- [ ] Créer le dossier src/controllers/ (Game, EventManager, ActionManager)
+- [x] Créer le dossier src/
+- [x] Créer le dossier src/models/ (Player, Event terminés)
+- [x] Créer le dossier src/controllers/ (Game, EventManager terminés)
 - [ ] Créer le dossier src/views/ (ConsoleUI)
 - [ ] Créer le dossier src/utils/ (SaveManager)
 - [ ] Créer le dossier data/ pour les sauvegardes
-- [ ] Créer le dossier tests/
+- [x] Créer le dossier tests/ (tests pour Player, Game, EventManager)
 - [ ] Fichier main.py à la racine
-- [ ] Ajouter les fichiers __init__.py
+- [x] Ajouter les fichiers **init**.py
+- [x] Scripts de démonstration pour chaque système
 
 ## Intégration et Tests
 
-### Boucle de jeu principale
+### Tests ✅ LARGEMENT TERMINÉS
 
-- [ ] Intégrer toutes les classes dans Game
-- [ ] Séquence complète : Affichage → Événement → Action → Évolution → Nouveau jour
-- [ ] Gestion fluide des transitions
-- [ ] Sauvegarde automatique chaque jour
-
-### Tests
-
-- [ ] Tests unitaires pour chaque classe
+- [x] Tests unitaires pour Player (9 tests)
+- [x] Tests unitaires pour Game (8 tests)
+- [x] Tests unitaires pour Event (6 tests)
+- [x] Tests unitaires pour EventManager (5 tests)
 - [ ] Tests d'intégration du gameplay complet
-- [ ] Tests des conditions de fin (game over, victoire)
+- [x] Tests des conditions de fin (game over, victoire)
 - [ ] Tests du système de sauvegarde/chargement
 - [ ] Tests de l'interface utilisateur
 
-### Conditions de fin
+### Conditions de fin ✅ TERMINÉES
 
-- [ ] Game over si faim ≥ 100
-- [ ] Game over si soif ≥ 100
-- [ ] Game over si énergie ≤ 0
-- [ ] Victoire après 30 jours de survie
-- [ ] Calcul et affichage du score final
+- [x] Game over si faim ≥ 100
+- [x] Game over si soif ≥ 100
+- [x] Game over si énergie ≤ 0
+- [x] Victoire après 30 jours de survie
+- [x] Calcul et affichage du score final
 
 ## Documentation et Finalisation
 
