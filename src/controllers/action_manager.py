@@ -2,9 +2,6 @@
 Action manager to handle player actions execution.
 """
 
-from ..models.actions_library import ACTIONS, get_action
-
-
 class ActionManager:
     """
     Manages all player actions and their execution.
@@ -12,37 +9,15 @@ class ActionManager:
     
     def __init__(self):
         """Initialize the action manager."""
-        self.available_actions = ACTIONS
+        # Just hardcode actions for now - simple approach
+        pass
     
-    def get_available_actions(self, player):
-        """
-        Get list of actions available to the player.
+    def execute_fish_action(self, player):
+        """Execute fish action."""
+        player.update_gauges(hunger_change=-20, energy_change=-15)
+        return True
         
-        Args:
-            player: Player instance
-            
-        Returns:
-            list: List of available action names
-        """
-        # For now, all actions are always available
-        available = []
-        for action_name, action in self.available_actions.items():
-            if action.can_execute(player):
-                available.append(action_name)
-        return available
-    
-    def execute_action(self, action_name, player):
-        """
-        Execute an action on the player.
-        
-        Args:
-            action_name (str): Name of the action to execute
-            player: Player instance
-            
-        Returns:
-            bool: True if action was executed successfully
-        """
-        action = get_action(action_name)
-        if action and action.can_execute(player):
-            return action.execute(player)
-        return False
+    def execute_sleep_action(self, player):
+        """Execute sleep action."""
+        player.update_gauges(energy_change=30, hunger_change=10, thirst_change=5)
+        return True
