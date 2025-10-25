@@ -98,13 +98,11 @@ class Player:
         Returns:
             str: Formatted status information
         """
-        return f"""
-{self.name} - Day {self.days_survived}
-Hunger: {self.hunger}/100
-Thirst: {self.thirst}/100
-Energy: {self.energy}/100
-Status: {'Alive' if self.is_alive else 'Dead'}
-""".strip()
+        return f"""{self.name} - Day {self.days_survived}
+                Hunger: {self.hunger}/100
+                Thirst: {self.thirst}/100
+                Energy: {self.energy}/100
+                Status: {'Alive' if self.is_alive else 'Dead'}"""
         
     def get_gauge_status(self, gauge_name: str) -> str:
         """
