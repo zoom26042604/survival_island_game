@@ -8,6 +8,7 @@
 - **Game** : Contrôleur principal, boucle de jeu, sauvegarde/chargement basique
 - **Event** : Système d'événements avec choix, types d'événements variés
 - **EventManager** : Gestionnaire d'événements aléatoires, probabilités configurables
+- **Actions** : Système d'actions joueur (fish, find_water, sleep) avec ActionManager
 
 ### Couverture de Tests 🧪
 
@@ -15,13 +16,14 @@
 - **Game** : 8 tests unitaires (fonctionnalités principales)
 - **Event** : 6 tests unitaires (effets et choix)
 - **EventManager** : 5 tests unitaires (triggers et probabilités)
+- **Actions** : 3 tests unitaires (fish, find_water, sleep actions)
 
 ### Prochaines Étapes 🎯
 
-1. **Actions System** (en cours) - Système d'actions joueur
-2. **ConsoleUI** - Interface utilisateur en console
-3. **SaveManager** - Gestionnaire de sauvegarde avancé
-4. **Intégration finale** - main.py et gameplay complet
+1. **ConsoleUI** - Interface utilisateur en console
+2. **SaveManager** - Gestionnaire de sauvegarde avancé  
+3. **Intégration finale** - main.py et gameplay complet
+4. **Polish & Testing** - Tests d'intégration et finitions
 
 ---
 
@@ -73,22 +75,24 @@
 - [x] Tests unitaires complets (5 tests)
 - [x] Intégration complète avec Player et Event
 
-### Classe Action
+### Classe Action ✅ TERMINÉE
 
-- [ ] Créer la classe Action pour les actions du joueur
-- [ ] Action "Pêcher" : -20 faim, -15 énergie
-- [ ] Action "Chercher eau" : -15 soif, -10 énergie
-- [ ] Action "Dormir" : +30 énergie, +10 faim, +5 soif
-- [ ] Action "Explorer" : déclenche événement aléatoire
-- [ ] Méthode execute() pour exécuter l'action
-- [ ] Méthode can_execute() pour vérifier si possible
+- [x] Créer la classe Action pour les actions du joueur
+- [x] Action "Pêcher" : -20 hunger, -15 energy (execute_fish_action)
+- [x] Action "Chercher eau" : -15 thirst, -10 energy (execute_find_water_action)
+- [x] Action "Dormir" : +30 energy, +10 hunger, +5 thirst (execute_sleep_action)
+- [x] Méthode execute() pour exécuter l'action
+- [x] Méthode can_execute() pour vérifier si possible
+- [x] Tests unitaires complets (3 tests)
+- [x] Intégration avec système Player
 
-### Classe ActionManager
+### Classe ActionManager ✅ TERMINÉE
 
-- [ ] Créer la classe ActionManager
-- [ ] Initialiser toutes les actions disponibles
-- [ ] Méthode get_available_actions() selon l'état du joueur
-- [ ] Méthode execute_action() pour exécuter une action
+- [x] Créer la classe ActionManager
+- [x] Implémenter actions disponibles (fish, find_water, sleep)
+- [x] Méthodes execute_*_action() pour chaque action
+- [x] Architecture simple et fonctionnelle
+- [x] Tests unitaires avec MockPlayer
 
 ## Interface Utilisateur
 
