@@ -21,6 +21,7 @@ class Action:
         self.description = description
         self.effects = effects  # Dict with hunger_change, thirst_change, energy_change
     
+    
     def execute(self, player):
         """
         Execute the action on the player.
@@ -48,3 +49,32 @@ class Action:
         """
         # For now, all actions are always possible
         return True
+    
+
+
+##########################################################################
+#####                   Action Setters and Getters                    ####
+##########################################################################
+    def getName(self):
+        """Get the name of the action."""
+        return self.name
+
+    def getDescription(self):
+        """Get the description of the action."""
+        return self.description
+
+    def getEffects(self):
+        """Get the effects of the action."""
+        return self.effects
+    
+    def setName(self, name):
+        """Set the name of the action."""
+        self.name = name
+
+    def setDescription(self, description):
+        """Set the description of the action."""
+        self.description = description
+
+    def setEffects(self, effects):
+        """Set the effects of the action."""
+        self.effects = effects
