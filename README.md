@@ -3,19 +3,6 @@
 
 A console-based survival game developed in Python where you must manage your adventurer's vital resources while stranded on a deserted island.
 
-## 🗂️ Système de sauvegarde avancé
-
-Depuis la version 2025-10 :
-
-- Chaque partie est enregistrée dans un fichier individuel nommé selon le joueur : `saves/nomdelavanturier.json`.
-- Au lancement, le jeu propose de reprendre une sauvegarde existante ou de créer une nouvelle partie.
-- Les fichiers de sauvegarde sont ignorés par git (voir `.gitignore`).
-
-## 🎨 Interface utilisateur améliorée
-
-- L’UI console est colorée, aérée, et les jauges vitales sont affichées avec des barres ASCII compactes et colorées.
-- Les actions et événements sont présentés avec des emojis et des couleurs pour une meilleure lisibilité.
-
 ## 📋 Description
 
 Your adventurer has crashed on a mysterious island. Your mission: survive as long as possible by managing your vital gauges and making the right decisions. Each day brings new challenges and unpredictable events!
