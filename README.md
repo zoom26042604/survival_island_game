@@ -1,4 +1,3 @@
-
 # 🏝️ Survival Island Game
 
 A console-based survival game developed in Python where you must manage your adventurer's vital resources while stranded on a deserted island.
@@ -158,16 +157,16 @@ python demo_game.py
 
 ## 🏆 Features
 
-✅ **Complete gauge management** (hunger, thirst, energy)
-✅ **Random event system** with player choices
-✅ **Multiple player actions** (fish, find water, sleep, explore)
-✅ **Natural gauge evolution** over time
-✅ **Victory/defeat conditions** (30 days survival goal)
-✅ **Advanced save management** (multi-sauvegarde, choix au lancement)
-✅ **Enhanced user interface** (espaces, couleurs, jauges compactes)
-✅ **Save/load functionality** (par joueur)
-✅ **Comprehensive unit testing** (31 tests)
-✅ **Console-based interface**
+✅ **Complete gauge management** (hunger, thirst, energy)  
+✅ **Random event system** with player choices  
+✅ **Multiple player actions** (fish, find water, sleep, explore)  
+✅ **Natural gauge evolution** over time  
+✅ **Victory/defeat conditions** (30 days survival goal)  
+✅ **Advanced save management** (multi-sauvegarde, choix au lancement)  
+✅ **Enhanced user interface** (espaces, couleurs, jauges compactes)  
+✅ **Save/load functionality** (par joueur)  
+✅ **Comprehensive unit testing** (31 tests)  
+✅ **Console-based interface**  
 
 ## 📚 Documentation
 
