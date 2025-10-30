@@ -1,0 +1,13 @@
+{
+  "saved_at": "2025-10-30T16:05:49.114766Z",
+  "state": {
+    "name": "Goose",
+    "hunger": 5,
+    "thirst": 11,
+    "energy": 10,
+    "days_survived": 2,
+    "is_alive": true,
+    "is_running": true,
+    "game_over_reason": null
+  }
+}

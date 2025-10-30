@@ -5,10 +5,22 @@ Game controller class - main game logic and flow management.
 import sys
 import os
 
-# Add parent directory to path for imports
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+# Ensure repo root is on sys.path when running this module as a script so
+# absolute imports like `src.models...` work.
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+if _REPO_ROOT not in sys.path:
+    sys.path.insert(0, _REPO_ROOT)
 
-from src.models.player import Player
+try:
+    # normal package import when used as part of the package
+    from ..models.player import Player
+except Exception:
+    # allow running this file directly (script mode) by falling back to an
+    # absolute import from the package root (we inserted it to sys.path above)
+    from src.models.player import Player
+
+import json
+from datetime import datetime
 
 
 class Game:
@@ -167,6 +179,73 @@ class Game:
             "is_running": self.is_running,
             "game_over_reason": self.game_over_reason
         }
+
+    def save_game(self, filepath: str) -> bool:
+        """
+        Save current game state to a JSON file atomically.
+
+        Args:
+            filepath (str): Path to JSON file to write.
+
+        Returns:
+            bool: True if saved successfully, False otherwise.
+        """
+        if not self.player:
+            print("No game to save.")
+            return False
+
+        state = self.get_game_state()
+        # attach save metadata
+        payload = {
+            "saved_at": datetime.utcnow().isoformat() + "Z",
+            "state": state
+        }
+
+        try:
+            dirname = os.path.dirname(filepath) or "."
+            os.makedirs(dirname, exist_ok=True)
+            tmp_path = filepath + ".tmp"
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                json.dump(payload, f, indent=2)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp_path, filepath)
+            return True
+        except Exception as e:
+            print(f"Error saving game to {filepath}: {e}")
+            # cleanup temp file if present
+            try:
+                if os.path.exists(tmp_path):
+                    os.remove(tmp_path)
+            except Exception:
+                pass
+            return False
+
+    def load_game_from_file(self, filepath: str) -> bool:
+        """
+        Load game state from a JSON file previously saved with save_game.
+
+        Args:
+            filepath (str): Path to JSON file to read.
+
+        Returns:
+            bool: True if load succeeded, False otherwise.
+        """
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                payload = json.load(f)
+            # payload expected to have 'state' key
+            state = payload.get("state") if isinstance(payload, dict) else None
+            if not state:
+                print(f"Invalid save file format: {filepath}")
+                return False
+            return self.load_game(state)
+        except FileNotFoundError:
+            print(f"Save file not found: {filepath}")
+            return False
+        except Exception as e:
+            print(f"Error loading save file {filepath}: {e}")
+            return False
         
     def get_player(self) -> Player:
         """

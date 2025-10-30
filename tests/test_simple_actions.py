@@ -21,9 +21,9 @@ class MockPlayer:
 # Import after mock to avoid circular imports
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from controllers.action_manager import ActionManager
+from src.controllers.action_manager import ActionManager
 
 
 class TestActionManager(unittest.TestCase):

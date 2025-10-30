@@ -5,10 +5,10 @@ Demo script to showcase the Game class functionality.
 import sys
 import os
 
-# Add the src directory to the path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+# Add the project root to the path so 'src' is an importable package
+sys.path.insert(0, os.path.dirname(__file__))
 
-from controllers.game import Game
+from src.controllers.game import Game
 
 
 def main():
