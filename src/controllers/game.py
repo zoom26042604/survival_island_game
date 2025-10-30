@@ -2,13 +2,7 @@
 Game controller class - main game logic and flow management.
 """
 
-import sys
-import os
-
-# Add parent directory to path for imports
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-
-from src.models.player import Player
+from ..models.player import Player
 
 
 class Game:
