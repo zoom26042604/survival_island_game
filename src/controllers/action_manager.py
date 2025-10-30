@@ -26,21 +26,24 @@ class ActionManager:
 
     def setDefaultActions(self):
         """Set default actions."""
+        # Effects inverted because gauges use 0=healthy, 100=death.
+        # Positive numbers move the gauge towards death; negative numbers
+        # improve the gauge (safer).
         self.actions = {
             'fish': Action(
                 name='Fish',
                 description='Catch fish to reduce hunger.',
-                effects={'hunger_change': 20, 'energy_change': -15}
+                effects={'hunger_change': -20, 'energy_change': 15}
             ),
             'sleep': Action(
                 name='Sleep',
                 description='Rest to restore energy.',
-                effects={'energy_change': 30, 'hunger_change': 10, 'thirst_change': 5}
+                effects={'energy_change': -30, 'hunger_change':  -10, 'thirst_change': -5}
             ),
             'find_water': Action(
                 name='Find Water',
                 description='Locate water to reduce thirst.',
-                effects={'thirst_change': 15, 'energy_change': -10}
+                effects={'thirst_change': -15, 'energy_change': 10}
             )
         }
     

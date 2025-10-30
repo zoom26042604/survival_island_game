@@ -24,10 +24,11 @@ class Player:
             name (str): Player's name
         """
         self.name = name
-        # Initial gauge values (100 = full health)
-        self.hunger = 100     # 100 = completely satisfied
-        self.thirst = 100     # 100 = completely hydrated
-        self.energy = 100     # 100 = full energy
+        # Initial gauge values (0 = healthy, 100 = death)
+        # We invert the gauges so higher values mean worse state.
+        self.hunger = 0     # 0 = completely satisfied, 100 = starving/death
+        self.thirst = 0     # 0 = completely hydrated, 100 = dehydrated/death
+        self.energy = 0     # 0 = full energy, 100 = exhausted/death
         self.days_survived = 0
         self.is_alive = True
         
@@ -66,16 +67,17 @@ class Player:
         
     def _update_alive_status(self):
         """Update player's alive/dead status."""
-        # Game over if any gauge reaches 0
-        if self.hunger <= 0 or self.thirst <= 0 or self.energy <= 0:
+        # Game over if any gauge reaches or exceeds 100 (death)
+        if self.hunger >= 100 or self.thirst >= 100 or self.energy >= 100:
             self.is_alive = False
             
     def natural_evolution(self):
         """
         Natural evolution of gauges each day.
-        Gauges decrease naturally over time.
+        Gauges worsen naturally over time (increase towards 100).
         """
-        self.update_gauges(hunger_change=-5, thirst_change=-8, energy_change=-10)
+        # Increase gauges (worsen) each day
+        self.update_gauges(hunger_change=5, thirst_change=8, energy_change=10)
         self.days_survived += 1
         
     def check_game_over(self) -> str:
@@ -113,29 +115,30 @@ class Player:
             str: Description of the gauge state
         """
         if gauge_name == "hunger":
-            if self.hunger >= 80:
+            # Lower is better; higher (toward 100) is worse
+            if self.hunger <= 20:
                 return "Satisfied"
-            elif self.hunger >= 60:
+            elif self.hunger <= 40:
                 return "Slightly hungry"
-            elif self.hunger >= 30:
+            elif self.hunger <= 70:
                 return "Hungry"
             else:
                 return "Starving"
         elif gauge_name == "thirst":
-            if self.thirst >= 80:
+            if self.thirst <= 20:
                 return "Hydrated"
-            elif self.thirst >= 60:
+            elif self.thirst <= 40:
                 return "Slightly thirsty"
-            elif self.thirst >= 30:
+            elif self.thirst <= 70:
                 return "Thirsty"
             else:
                 return "Dehydrated"
         elif gauge_name == "energy":
-            if self.energy >= 80:
+            if self.energy <= 20:
                 return "Energetic"
-            elif self.energy >= 60:
+            elif self.energy <= 40:
                 return "Slightly tired"
-            elif self.energy >= 30:
+            elif self.energy <= 70:
                 return "Tired"
             else:
                 return "Exhausted"
