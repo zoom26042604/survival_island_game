@@ -1,3 +1,5 @@
+# Ignore all save files
+saves/*.json
 # Python cache files
 __pycache__/
 *.py[cod]
