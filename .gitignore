@@ -1,0 +1,30 @@
+# Ignore all save files
+saves/*.json
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local development tools (not to be committed)
+dev_tools/
+*.local
+
+# Game save files
+saves/
+data/saves/

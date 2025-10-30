@@ -63,7 +63,7 @@ Each survival day:
 
 ### Project Structure
 
-```
+```text
 survival_island_game/
 ├── src/
 │   ├── models/
@@ -106,4 +106,6 @@ survival_island_game/
 
 ---
 
-*Project specification - Survival Island Game*
+## Project Specification
+
+Survival Island Game

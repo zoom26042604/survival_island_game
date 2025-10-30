@@ -98,26 +98,26 @@
 - [x] Simple and functional architecture
 - [x] Unit tests with MockPlayer
 
-### ConsoleUI Class
+### ConsoleUI Class ✅ COMPLETED
 
-- [ ] Create ConsoleUI class for display
-- [ ] display_main_menu() method (New, Load, Quit)
-- [ ] display_player_status() method with ASCII progress bars
-- [ ] display_action_menu() method to choose an action
-- [ ] display_event() method to display events
-- [ ] display_game_over() method for end screen
-- [ ] _draw_gauge_bar() method for ASCII bars
-- [ ] User input handling with validation
+- [x] Create ConsoleUI class for display
+- [x] display_main_menu() method (New, Load, Quit)
+- [x] display_player_status() method with ASCII progress bars
+- [x] display_action_menu() method to choose an action
+- [x] display_event() method to display events
+- [x] display_game_over() method for end screen
+- [x] _draw_gauge_bar() method for ASCII bars
+- [x] User input handling with validation
 
-### SaveManager Class
+### SaveManager Class ✅ COMPLETED
 
-- [ ] Create SaveManager class
-- [ ] save_game() method to save in JSON
-- [ ] load_game() method to load from JSON
-- [ ] list_saves() method to list saves
-- [ ] JSON structure: gauges, day, player name
-- [ ] Error handling (missing file, invalid JSON)
-- [ ] Automatic save directory creation
+- [x] Create SaveManager class
+- [x] save_game() method to save in JSON
+- [x] load_game() method to load from JSON
+- [x] list_saves() method to list saves
+- [x] JSON structure: gauges, day, player name
+- [x] Error handling (missing file, invalid JSON)
+- [x] Automatic save directory creation
 
 ## Project Structure
 
@@ -126,12 +126,11 @@
 - [x] Create src/ folder
 - [x] Create src/models/ folder (Player, Event, Action completed)
 - [x] Create src/controllers/ folder (Game, EventManager, ActionManager completed)
-- [ ] Create src/views/ folder (ConsoleUI)
-- [ ] Create src/utils/ folder (SaveManager)
+- [x] Create src/views/ folder (ConsoleUI)
+- [x] Create src/utils/ folder (SaveManager)
 - [x] Create docs/ folder (organized documentation)
-- [ ] Create data/ folder for saves
 - [x] Create tests/ folder (tests for Player, Game, EventManager, Actions)
-- [ ] main.py file at root
+- [x] main.py file at root
 - [x] Add **init**.py files
 - [x] Demonstration scripts for each system
 
@@ -144,10 +143,10 @@
 - [x] Unit tests for Event (6 tests)
 - [x] Unit tests for EventManager (5 tests)
 - [x] Unit tests for Actions (3 tests)
-- [ ] Complete gameplay integration tests
+- [x] Complete gameplay integration tests
 - [x] Game over condition tests (game over, victory)
-- [ ] Save/load system tests
-- [ ] User interface tests
+- [x] Save/load system tests
+- [x] User interface tests
 
 **Total: 31 unit tests** ✅
 
@@ -167,17 +166,47 @@
 - [x] README.md with detailed game rules
 - [x] README.md with installation and launch instructions
 - [x] Organized documentation in docs/
-- [x] TACHES.md with project status
-- [x] SUJET.md with requirements
-- [ ] Code comments (in progress)
+- [x] TASKS.md with project status
+- [x] REQUIREMENTS.md with project specifications
+- [x] English translation of all documentation
+- [x] Markdown linting and formatting corrections
+- [x] Code formatting improvements
 
-### Demo and Presentation
+### Code Quality and Maintenance ✅ COMPLETED
 
-- [ ] Prepare a demonstration scenario
-- [ ] Test all gameplay paths
-- [ ] Verify gauge balancing
-- [ ] Ensure smooth gameplay flow
+- [x] Repository cleanup and branch management
+- [x] Remove obsolete feature branches
+- [x] Maintain clean Git workflow
+- [x] Consistent code formatting standards
+
+### Demo and Presentation ✅ COMPLETED
+
+- [x] Prepare a demonstration scenario
+- [x] Test all gameplay paths
+- [x] Verify gauge balancing
+- [x] Ensure smooth gameplay flow
+
+## Current Branch Structure
+
+### Active Branches
+
+- **main**: Stable production branch
+- **dev**: Active development branch
+
+### Completed and Merged Features
+
+- ✅ Player system (implemented and merged)
+- ✅ Game controller (implemented and merged)
+- ✅ Events system (implemented and merged)
+- ✅ Actions system (implemented and merged)
+- ✅ Game loop (implemented and merged)
+- ✅ Project structure (implemented and merged)
+- ✅ Testing framework (implemented and merged)
 
 ---
 
-*Documentation updated on 25/10/2025*
+## Documentation Updated
+
+Last updated: 30/10/2025
+
+**Note : Le jeu gère désormais plusieurs sauvegardes, propose le choix au lancement, et l’interface console est colorée et aérée. Toutes les fonctionnalités principales sont terminées.**
