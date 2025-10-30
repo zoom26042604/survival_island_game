@@ -25,6 +25,11 @@ class EventManager:
         if random.random() < self.daily_chance:
             event = random.choice(self.events)
             result = event.apply_effects(player)
+
+            # attach event metadata so callers can display colored/emoji UI
+            if isinstance(result, dict):
+                result.setdefault('event_name', event.name)
+                result.setdefault('event_type', event.event_type.value)
             
             # Handle choice events differently
             if result.get("requires_choice"):
@@ -32,8 +37,11 @@ class EventManager:
                 choices = list(result["choices"].keys())
                 if choices:
                     choice = choices[0]  # Pick first choice for now
-                    return event.apply_choice(player, choice)
-            
+                    choice_res = event.apply_choice(player, choice)
+                    if isinstance(choice_res, dict):
+                        choice_res.setdefault('event_name', event.name)
+                        choice_res.setdefault('event_type', event.event_type.value)
+                    return choice_res
             return result
         return None
         
@@ -42,13 +50,21 @@ class EventManager:
         if random.random() < self.exploration_chance:
             event = random.choice(self.events)
             result = event.apply_effects(player)
+
+            # attach event metadata
+            if isinstance(result, dict):
+                result.setdefault('event_name', event.name)
+                result.setdefault('event_type', event.event_type.value)
             
             if result.get("requires_choice"):
                 choices = list(result["choices"].keys())
                 if choices:
                     # For exploration, maybe pick more risky choices
                     choice = choices[-1]  # Pick last choice (often riskier)
-                    return event.apply_choice(player, choice)
-            
+                    choice_res = event.apply_choice(player, choice)
+                    if isinstance(choice_res, dict):
+                        choice_res.setdefault('event_name', event.name)
+                        choice_res.setdefault('event_type', event.event_type.value)
+                    return choice_res
             return result
         return None

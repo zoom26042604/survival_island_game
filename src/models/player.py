@@ -87,8 +87,6 @@ class Player:
         """
         if not self.is_alive:
             return "Game Over: You died from lack of vital resources!"
-        elif self.days_survived >= 30:
-            return "Congratulations! You won by surviving 30 days on the island!"
         return None
         
     def get_status(self) -> str:

@@ -30,7 +30,7 @@ class ActionManager:
             'fish': Action(
                 name='Fish',
                 description='Catch fish to reduce hunger.',
-                effects={'hunger_change': -20, 'energy_change': -15}
+                effects={'hunger_change': 20, 'energy_change': -15}
             ),
             'sleep': Action(
                 name='Sleep',
@@ -40,10 +40,14 @@ class ActionManager:
             'find_water': Action(
                 name='Find Water',
                 description='Locate water to reduce thirst.',
-                effects={'thirst_change': -15, 'energy_change': -10}
+                effects={'thirst_change': 15, 'energy_change': -10}
             )
         }
     
+    def get_actions_desc(self):
+        """Get descriptions of all available actions."""
+        return {name: action.description for name, action in self.actions.items()}
+
     def execute_fish_action(self, player):
         """Execute fish action."""
         self.actions['fish'].execute(player)
