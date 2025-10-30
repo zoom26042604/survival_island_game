@@ -63,7 +63,7 @@ git clone https://github.com/zoom26042604/survival_island_game.git
 cd survival_island_game
 ```
 
-1. Run the game:
+2. Run the game:
 
 ```bash
 python main.py
@@ -162,9 +162,9 @@ python demo_game.py
 ✅ **Multiple player actions** (fish, find water, sleep, explore)  
 ✅ **Natural gauge evolution** over time  
 ✅ **Victory/defeat conditions** (30 days survival goal)  
-✅ **Advanced save management** (multi-sauvegarde, choix au lancement)  
-✅ **Enhanced user interface** (espaces, couleurs, jauges compactes)  
-✅ **Save/load functionality** (par joueur)  
+✅ **Advanced save management** (multi-save, choice at launch)  
+✅ **Enhanced user interface** (spacing, colors, compact gauges)  
+✅ **Save/load functionality** (per player)  
 ✅ **Comprehensive unit testing** (31 tests)  
 ✅ **Console-based interface**  
 
