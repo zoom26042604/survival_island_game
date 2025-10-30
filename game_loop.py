@@ -20,6 +20,7 @@ from src.ui.cli import (
     render_stats,
     choose_and_apply_action,
     display_event,
+    prompt_save,
 )
 
 
@@ -65,10 +66,13 @@ def main() -> None:
 
     except KeyboardInterrupt:
         print("\nInterrupted. Exiting.")
-
-    print("\nFinal state:")
-    for k, v in game.get_game_state().items():
-        print(f" - {k}: {v}")
+    finally:
+        # Offer to save the game on exit, unless running on Windows (user preference)
+        try:
+            if os.name != 'nt':
+                prompt_save(game)
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":

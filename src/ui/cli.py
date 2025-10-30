@@ -63,24 +63,34 @@ def render_stats(player) -> None:
 
 
 def prompt_start(game) -> None:
-    choice = input("Load saved game? (y/n) ").strip().lower()
+    choice = input("Load saved game from file? (y/n) ").strip().lower()
     if choice == "y":
-        # example saved data used for demo/test
-        save_data = {
-            "name": "SavedPlayer",
-            "hunger": 50,
-            "thirst": 50,
-            "energy": 50,
-            "days_survived": 5,
-            "is_alive": True,
-        }
-        if game.load_game(save_data):
-            print("Loaded saved game.")
+        path = input("Enter save file path (default: savegame.json): ").strip() or "savegame.json"
+        if game.load_game_from_file(path):
+            print(f"Loaded saved game from {path}.")
             return
         print("Failed to load save — starting new game.")
 
     name = input("Enter player name (or press Enter for 'Survivor'): ").strip() or "Survivor"
     game.start_new_game(name)
+
+
+def prompt_save(game, default_path: str = "savegame.json") -> None:
+    """Prompt user to save the current game to a JSON file."""
+    if not game or not game.get_player():
+        print("No game in progress to save.")
+        return
+
+    choice = input(f"Save current game to file? (y/n) [default: {default_path}] ").strip().lower()
+    if choice != "y":
+        return
+
+    path = input(f"Enter save file path (default: {default_path}): ").strip() or default_path
+    ok = game.save_game(path)
+    if ok:
+        print(f"Game saved to {path}.")
+    else:
+        print("Failed to save game.")
 
 
 def choose_and_apply_action(am, player) -> None:
