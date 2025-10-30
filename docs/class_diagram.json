@@ -1,7 +1,4 @@
 {
-  "project": "Jeu de Survie sur une Île",
-  "version": "1.0",
-  "description": "Diagramme de classes pour le jeu de survie en console Python",
   "classes": [
     {
       "name": "Player",
@@ -12,12 +9,6 @@
           "type": "str",
           "visibility": "private",
           "description": "Nom du joueur"
-        },
-        {
-          "name": "hunger",
-          "type": "int",
-          "visibility": "private",
-          "description": "Niveau de faim (0-100, 100 = affamé)"
         },
         {
           "name": "thirst",
@@ -91,7 +82,7 @@
     },
     {
       "name": "Game",
-      "description": "Contrôleur principal du jeu, gère la boucle de jeu",
+      "description": "Contrôleur principal du jeu, gère la boucle de jeu et la sauvegarde",
       "attributes": [
         {
           "name": "player",
@@ -100,16 +91,16 @@
           "description": "Instance du joueur"
         },
         {
-          "name": "current_day",
-          "type": "int",
-          "visibility": "private",
-          "description": "Jour actuel de la partie"
-        },
-        {
-          "name": "game_running",
+          "name": "is_running",
           "type": "bool",
           "visibility": "private",
           "description": "État du jeu (en cours/arrêté)"
+        },
+        {
+          "name": "game_over_reason",
+          "type": "str",
+          "visibility": "private",
+          "description": "Raison de la fin de partie"
         },
         {
           "name": "event_manager",
@@ -118,16 +109,10 @@
           "description": "Gestionnaire des événements"
         },
         {
-          "name": "ui",
-          "type": "ConsoleUI",
+          "name": "action_manager",
+          "type": "ActionManager",
           "visibility": "private",
-          "description": "Interface utilisateur"
-        },
-        {
-          "name": "save_manager",
-          "type": "SaveManager",
-          "visibility": "private",
-          "description": "Gestionnaire de sauvegarde"
+          "description": "Gestionnaire des actions"
         }
       ],
       "methods": [
@@ -141,30 +126,30 @@
         {
           "name": "start_new_game",
           "parameters": ["player_name: str"],
-          "return_type": "None",
+          "return_type": "bool",
           "visibility": "public",
           "description": "Démarre une nouvelle partie"
         },
         {
           "name": "load_game",
-          "parameters": ["save_file: str"],
+          "parameters": ["save_data: dict"],
           "return_type": "bool",
           "visibility": "public",
-          "description": "Charge une partie sauvegardée"
+          "description": "Charge une partie depuis des données"
+        },
+        {
+          "name": "save_game",
+          "parameters": ["filepath: str"],
+          "return_type": "bool",
+          "visibility": "public",
+          "description": "Sauvegarde la partie dans un fichier JSON"
         },
         {
           "name": "game_loop",
           "parameters": [],
-          "return_type": "None",
+          "return_type": "str",
           "visibility": "public",
-          "description": "Boucle principale du jeu"
-        },
-        {
-          "name": "process_day",
-          "parameters": [],
-          "return_type": "None",
-          "visibility": "private",
-          "description": "Traite une journée complète"
+          "description": "Boucle principale du jeu (un jour)"
         },
         {
           "name": "check_victory",
@@ -175,169 +160,10 @@
         },
         {
           "name": "end_game",
-          "parameters": ["victory: bool"],
+          "parameters": ["reason: str"],
           "return_type": "None",
           "visibility": "public",
           "description": "Termine la partie"
-        }
-      ]
-    },
-    {
-      "name": "EventManager",
-      "description": "Gère les événements aléatoires du jeu",
-      "attributes": [
-        {
-          "name": "events",
-          "type": "List[Event]",
-          "visibility": "private",
-          "description": "Liste des événements possibles"
-        },
-        {
-          "name": "daily_event_chance",
-          "type": "float",
-          "visibility": "private",
-          "description": "Probabilité d'événement par jour"
-        }
-      ],
-      "methods": [
-        {
-          "name": "__init__",
-          "parameters": [],
-          "return_type": "None",
-          "visibility": "public",
-          "description": "Initialise le gestionnaire d'événements"
-        },
-        {
-          "name": "trigger_daily_event",
-          "parameters": ["player: Player"],
-          "return_type": "Optional[Event]",
-          "visibility": "public",
-          "description": "Déclenche un événement aléatoire"
-        },
-        {
-          "name": "trigger_exploration_event",
-          "parameters": ["player: Player"],
-          "return_type": "Event",
-          "visibility": "public",
-          "description": "Déclenche un événement d'exploration"
-        },
-        {
-          "name": "_get_random_event",
-          "parameters": [],
-          "return_type": "Event",
-          "visibility": "private",
-          "description": "Sélectionne un événement aléatoire"
-        }
-      ]
-    },
-    {
-      "name": "Event",
-      "description": "Représente un événement qui peut affecter le joueur",
-      "attributes": [
-        {
-          "name": "name",
-          "type": "str",
-          "visibility": "public",
-          "description": "Nom de l'événement"
-        },
-        {
-          "name": "description",
-          "type": "str",
-          "visibility": "public",
-          "description": "Description de l'événement"
-        },
-        {
-          "name": "effects",
-          "type": "dict",
-          "visibility": "public",
-          "description": "Effets sur les jauges du joueur"
-        },
-        {
-          "name": "probability",
-          "type": "float",
-          "visibility": "public",
-          "description": "Probabilité d'occurrence"
-        },
-        {
-          "name": "requires_choice",
-          "type": "bool",
-          "visibility": "public",
-          "description": "Si l'événement nécessite un choix"
-        },
-        {
-          "name": "choices",
-          "type": "Optional[List[dict]]",
-          "visibility": "public",
-          "description": "Choix possibles pour l'événement"
-        }
-      ],
-      "methods": [
-        {
-          "name": "__init__",
-          "parameters": ["name: str", "description: str", "effects: dict", "probability: float"],
-          "return_type": "None",
-          "visibility": "public",
-          "description": "Initialise l'événement"
-        },
-        {
-          "name": "apply_effects",
-          "parameters": ["player: Player", "choice: Optional[int]"],
-          "return_type": "str",
-          "visibility": "public",
-          "description": "Applique les effets de l'événement au joueur"
-        }
-      ]
-    },
-    {
-      "name": "Action",
-      "description": "Représente une action que peut effectuer le joueur",
-      "attributes": [
-        {
-          "name": "name",
-          "type": "str",
-          "visibility": "public",
-          "description": "Nom de l'action"
-        },
-        {
-          "name": "description",
-          "type": "str",
-          "visibility": "public",
-          "description": "Description de l'action"
-        },
-        {
-          "name": "effects",
-          "type": "dict",
-          "visibility": "public",
-          "description": "Effets sur les jauges du joueur"
-        },
-        {
-          "name": "energy_cost",
-          "type": "int",
-          "visibility": "public",
-          "description": "Coût en énergie de l'action"
-        }
-      ],
-      "methods": [
-        {
-          "name": "__init__",
-          "parameters": ["name: str", "description: str", "effects: dict"],
-          "return_type": "None",
-          "visibility": "public",
-          "description": "Initialise l'action"
-        },
-        {
-          "name": "execute",
-          "parameters": ["player: Player"],
-          "return_type": "str",
-          "visibility": "public",
-          "description": "Exécute l'action sur le joueur"
-        },
-        {
-          "name": "can_execute",
-          "parameters": ["player: Player"],
-          "return_type": "bool",
-          "visibility": "public",
-          "description": "Vérifie si l'action peut être exécutée"
         }
       ]
     },
@@ -373,152 +199,6 @@
           "return_type": "str",
           "visibility": "public",
           "description": "Exécute une action spécifique"
-        },
-        {
-          "name": "_create_default_actions",
-          "parameters": [],
-          "return_type": "None",
-          "visibility": "private",
-          "description": "Crée les actions par défaut du jeu"
-        }
-      ]
-    },
-    {
-      "name": "ConsoleUI",
-      "description": "Interface utilisateur en console",
-      "attributes": [
-        {
-          "name": "width",
-          "type": "int",
-          "visibility": "private",
-          "description": "Largeur de l'affichage"
-        }
-      ],
-      "methods": [
-        {
-          "name": "__init__",
-          "parameters": [],
-          "return_type": "None",
-          "visibility": "public",
-          "description": "Initialise l'interface"
-        },
-        {
-          "name": "display_main_menu",
-          "parameters": [],
-          "return_type": "int",
-          "visibility": "public",
-          "description": "Affiche le menu principal"
-        },
-        {
-          "name": "display_player_status",
-          "parameters": ["player: Player"],
-          "return_type": "None",
-          "visibility": "public",
-          "description": "Affiche le statut du joueur"
-        },
-        {
-          "name": "display_action_menu",
-          "parameters": ["actions: List[Action]"],
-          "return_type": "int",
-          "visibility": "public",
-          "description": "Affiche le menu des actions"
-        },
-        {
-          "name": "display_event",
-          "parameters": ["event: Event"],
-          "return_type": "Optional[int]",
-          "visibility": "public",
-          "description": "Affiche un événement"
-        },
-        {
-          "name": "display_game_over",
-          "parameters": ["player: Player", "victory: bool"],
-          "return_type": "None",
-          "visibility": "public",
-          "description": "Affiche l'écran de fin de partie"
-        },
-        {
-          "name": "_draw_gauge_bar",
-          "parameters": ["value: int", "max_value: int", "width: int"],
-          "return_type": "str",
-          "visibility": "private",
-          "description": "Dessine une barre de progression ASCII"
-        },
-        {
-          "name": "_get_user_input",
-          "parameters": ["prompt: str", "valid_choices: List[int]"],
-          "return_type": "int",
-          "visibility": "private",
-          "description": "Récupère et valide l'entrée utilisateur"
-        }
-      ]
-    },
-    {
-      "name": "SaveManager",
-      "description": "Gère la sauvegarde et le chargement des parties",
-      "attributes": [
-        {
-          "name": "save_directory",
-          "type": "str",
-          "visibility": "private",
-          "description": "Répertoire des sauvegardes"
-        },
-        {
-          "name": "save_file_extension",
-          "type": "str",
-          "visibility": "private",
-          "description": "Extension des fichiers de sauvegarde"
-        }
-      ],
-      "methods": [
-        {
-          "name": "__init__",
-          "parameters": [],
-          "return_type": "None",
-          "visibility": "public",
-          "description": "Initialise le gestionnaire de sauvegarde"
-        },
-        {
-          "name": "save_game",
-          "parameters": ["player: Player", "current_day: int", "filename: str"],
-          "return_type": "bool",
-          "visibility": "public",
-          "description": "Sauvegarde l'état du jeu"
-        },
-        {
-          "name": "load_game",
-          "parameters": ["filename: str"],
-          "return_type": "Optional[dict]",
-          "visibility": "public",
-          "description": "Charge une partie sauvegardée"
-        },
-        {
-          "name": "list_saves",
-          "parameters": [],
-          "return_type": "List[str]",
-          "visibility": "public",
-          "description": "Liste les sauvegardes disponibles"
-        },
-        {
-          "name": "delete_save",
-          "parameters": ["filename: str"],
-          "return_type": "bool",
-          "visibility": "public",
-          "description": "Supprime une sauvegarde"
-        },
-        {
-          "name": "_create_save_directory",
-          "parameters": [],
-          "return_type": "None",
-          "visibility": "private",
-          "description": "Crée le répertoire de sauvegarde"
-        },
-        {
-          "name": "_serialize_game_state",
-          "parameters": ["player: Player", "current_day: int"],
-          "return_type": "dict",
-          "visibility": "private",
-          "description": "Sérialise l'état du jeu en dictionnaire"
         }
       ]
     }
@@ -539,68 +219,14 @@
     {
       "type": "composition",
       "from": "Game",
-      "to": "ConsoleUI",
-      "description": "Le jeu contient une interface utilisateur"
-    },
-    {
-      "type": "composition",
-      "from": "Game",
-      "to": "SaveManager",
-      "description": "Le jeu contient un gestionnaire de sauvegarde"
-    },
-    {
-      "type": "composition",
-      "from": "Game",
       "to": "ActionManager",
       "description": "Le jeu contient un gestionnaire d'actions"
-    },
-    {
-      "type": "aggregation",
-      "from": "EventManager",
-      "to": "Event",
-      "description": "Le gestionnaire d'événements contient des événements"
     },
     {
       "type": "aggregation",
       "from": "ActionManager",
       "to": "Action",
       "description": "Le gestionnaire d'actions contient des actions"
-    },
-    {
-      "type": "dependency",
-      "from": "Event",
-      "to": "Player",
-      "description": "Les événements affectent le joueur"
-    },
-    {
-      "type": "dependency",
-      "from": "Action",
-      "to": "Player",
-      "description": "Les actions affectent le joueur"
-    },
-    {
-      "type": "dependency",
-      "from": "ConsoleUI",
-      "to": "Player",
-      "description": "L'interface affiche les informations du joueur"
-    },
-    {
-      "type": "dependency",
-      "from": "ConsoleUI",
-      "to": "Event",
-      "description": "L'interface affiche les événements"
-    },
-    {
-      "type": "dependency",
-      "from": "ConsoleUI",
-      "to": "Action",
-      "description": "L'interface affiche les actions"
-    },
-    {
-      "type": "dependency",
-      "from": "SaveManager",
-      "to": "Player",
-      "description": "Le gestionnaire sauvegarde l'état du joueur"
     }
   ],
   "design_patterns": [
@@ -613,16 +239,6 @@
       "pattern": "Strategy",
       "classes": ["Action", "ActionManager"],
       "description": "Différentes stratégies d'actions"
-    },
-    {
-      "pattern": "Observer",
-      "classes": ["Player", "ConsoleUI"],
-      "description": "L'interface observe les changements du joueur"
-    },
-    {
-      "pattern": "Factory",
-      "classes": ["EventManager", "ActionManager"],
-      "description": "Création d'événements et d'actions"
     }
   ],
   "notes": [
@@ -631,7 +247,6 @@
     "Victoire après 30 jours de survie",
     "Sauvegarde automatique chaque jour",
     "Événements aléatoires avec probabilités définies",
-    "Interface console avec barres de progression ASCII",
     "Code modulaire et extensible pour ajouts futurs"
   ]
 }
