@@ -1,6 +1,20 @@
+
 # 🏝️ Survival Island Game
 
 A console-based survival game developed in Python where you must manage your adventurer's vital resources while stranded on a deserted island.
+
+## 🗂️ Système de sauvegarde avancé
+
+Depuis la version 2025-10 :
+
+- Chaque partie est enregistrée dans un fichier individuel nommé selon le joueur : `saves/nomdelavanturier.json`.
+- Au lancement, le jeu propose de reprendre une sauvegarde existante ou de créer une nouvelle partie.
+- Les fichiers de sauvegarde sont ignorés par git (voir `.gitignore`).
+
+## 🎨 Interface utilisateur améliorée
+
+- L’UI console est colorée, aérée, et les jauges vitales sont affichées avec des barres ASCII compactes et colorées.
+- Les actions et événements sont présentés avec des emojis et des couleurs pour une meilleure lisibilité.
 
 ## 📋 Description
 
@@ -157,16 +171,16 @@ python demo_game.py
 
 ## 🏆 Features
 
-- ✅ **Complete gauge management** (hunger, thirst, energy)
-- ✅ **Random event system** with player choices
-- ✅ **Multiple player actions** (fish, find water, sleep, explore)
-- ✅ **Natural gauge evolution** over time
-- ✅ **Victory/defeat conditions** (30 days survival goal)
-- ✅ **Save/load functionality** (basic implementation)
-- ✅ **Comprehensive unit testing** (31 tests)
-- ✅ **Console-based interface**
-- � **Advanced save management** (in development)
-- � **Enhanced user interface** (in development)
+✅ **Complete gauge management** (hunger, thirst, energy)
+✅ **Random event system** with player choices
+✅ **Multiple player actions** (fish, find water, sleep, explore)
+✅ **Natural gauge evolution** over time
+✅ **Victory/defeat conditions** (30 days survival goal)
+✅ **Advanced save management** (multi-sauvegarde, choix au lancement)
+✅ **Enhanced user interface** (espaces, couleurs, jauges compactes)
+✅ **Save/load functionality** (par joueur)
+✅ **Comprehensive unit testing** (31 tests)
+✅ **Console-based interface**
 
 ## 📚 Documentation
 
@@ -191,21 +205,8 @@ This is a student project. For development guidelines:
 - **dev**: Active development branch  
 - **feature/**: Feature branches for new development
 
-### Current Development Focus
-
-- 🚧 **Console User Interface** (`feature/ui-interface`)
-- 🚧 **Advanced Save System** (`feature/save-system`)
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## � Development Status
-
-- **Phase 1**: Core systems ✅ **COMPLETED**
-- **Phase 2**: User interface 🚧 **IN PROGRESS**
-- **Phase 3**: Advanced features 📋 **PLANNED**
-
----
 
 ## Happy surviving! 🏝️
