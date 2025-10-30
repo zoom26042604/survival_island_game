@@ -11,12 +11,12 @@ from src.controllers.game import Game
 from src.controllers.action_manager import ActionManager
 from src.controllers.event_manager import EventManager
 from src.ui.cli import (
-	prompt_start,
-	render_header,
-	render_stats,
-	choose_and_apply_action,
-	display_event,
-	prompt_save,
+    prompt_start,
+    render_header,
+    render_slider,
+    choose_and_apply_action,
+    display_event,
+    prompt_save,
 )
 
 
@@ -31,32 +31,54 @@ def main() -> None:
 	try:
 		while True:
 			render_header(player)
-			render_stats(player)
+			print("Hunger :", render_slider(player.hunger, gauge_type="hunger"))
+			print("Thirst :", render_slider(player.thirst, gauge_type="thirst"))
+			print("Energy :", render_slider(player.energy, gauge_type="energy"))
 
 			# check end conditions after rendering so UI always visible
 			if player.check_game_over():
-				print("\nGame Over: You died from lack of vital resources!")
+				print()
+				print("Game Over: You died from lack of vital resources!")
+				print()
 				break
 			if game.check_victory():
-				print("\nVictory: You survived 30 days on the island!")
+				print()
+				print("Victory: You survived 30 days on the island!")
+				print()
 				break
 
 			try:
-				choose_and_apply_action(am, player)
+				print()
+				action_result = choose_and_apply_action(am, player)
+				print()
 			except KeyboardInterrupt:
-				print("\nQuitting game...")
+				print()
+				print("Quitting game...")
+				print()
 				break
+
+			# If player chose 'explore', trigger event
+			if action_result == "explore":
+				print()
+				event_res = am.execute_explore_action(player, em)
+				if event_res:
+					display_event(event_res)
+				print()
 
 			# Advance game state via controller
 			status_msg = game.game_loop()
 			if status_msg:
-				print(f"\n{status_msg}")
+				print()
+				print(f"{status_msg}")
+				print()
 				break
 
 			# Trigger and display event via UI helper
 			res = em.trigger_daily_event(player)
 			if res:
+				print()
 				display_event(res)
+				print()
 
 			time.sleep(0.1)
 

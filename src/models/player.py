@@ -25,10 +25,9 @@ class Player:
         """
         self.name = name
         # Initial gauge values (0 = healthy, 100 = death)
-        # We invert the gauges so higher values mean worse state.
         self.hunger = 0     # 0 = completely satisfied, 100 = starving/death
         self.thirst = 0     # 0 = completely hydrated, 100 = dehydrated/death
-        self.energy = 0     # 0 = full energy, 100 = exhausted/death
+        self.energy = 100  # 100 = full energy, 0 = exhausted/death
         self.days_survived = 0
         self.is_alive = True
         
@@ -67,8 +66,8 @@ class Player:
         
     def _update_alive_status(self):
         """Update player's alive/dead status."""
-        # Game over if any gauge reaches or exceeds 100 (death)
-        if self.hunger >= 100 or self.thirst >= 100 or self.energy >= 100:
+        # Game over if hunger or thirst >= 100, or energy <= 0
+        if self.hunger >= 100 or self.thirst >= 100 or self.energy <= 0:
             self.is_alive = False
             
     def natural_evolution(self):
@@ -76,8 +75,8 @@ class Player:
         Natural evolution of gauges each day.
         Gauges worsen naturally over time (increase towards 100).
         """
-        # Increase gauges (worsen) each day
-        self.update_gauges(hunger_change=5, thirst_change=8, energy_change=10)
+        # Hunger and thirst augmentent, energy diminue chaque jour
+        self.update_gauges(hunger_change=5, thirst_change=8, energy_change=-10)
         self.days_survived += 1
         
     def check_game_over(self) -> str:

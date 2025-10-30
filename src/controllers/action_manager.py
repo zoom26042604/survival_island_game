@@ -33,17 +33,22 @@ class ActionManager:
             'fish': Action(
                 name='Fish',
                 description='Catch fish to reduce hunger.',
-                effects={'hunger_change': -20, 'energy_change': 15}
+                effects={'hunger_change': -20, 'energy_change': -15}
             ),
             'sleep': Action(
                 name='Sleep',
                 description='Rest to restore energy.',
-                effects={'energy_change': -30, 'hunger_change':  -10, 'thirst_change': -5}
+                effects={'energy_change': 30, 'hunger_change': 10, 'thirst_change': 5}
             ),
             'find_water': Action(
                 name='Find Water',
                 description='Locate water to reduce thirst.',
-                effects={'thirst_change': -15, 'energy_change': 10}
+                effects={'thirst_change': -15, 'energy_change': -10}
+            ),
+            'explore': Action(
+                name='Explore',
+                description='Explore the island to trigger a random event.',
+                effects={'energy_change': -20}
             )
         }
     
@@ -68,3 +73,10 @@ class ActionManager:
         self.actions['find_water'].execute(player)
         #player.update_gauges(thirst_change=-15, energy_change=-10)
         return True
+
+    def execute_explore_action(self, player, event_manager=None):
+        """Execute explore action and trigger a random event."""
+        self.actions['explore'].execute(player)
+        if event_manager:
+            return event_manager.trigger_exploration_event(player)
+        return None
